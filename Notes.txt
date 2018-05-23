@@ -1,0 +1,7 @@
+Studio Path:
+
+/opt/tibco/tci/studio/4.0/eclipse
+
+run
+
+./TIBCOBusinessStudio
