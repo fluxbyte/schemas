@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/ServiceFault.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/ServiceFault.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="ServiceFault" type="ServiceFault_type"/>
+	<xs:complexType name="ServiceFault_type">
+		<xs:sequence>
+			<xs:element name="ServiceName" type="xs:string"/>
+			<xs:element name="ServiceCode" type="xs:string"/>
+			<xs:element name="FaultCode" type="xs:string"/>
+			<xs:element name="FaultDescription" type="xs:string"/>
+			<xs:element name="FaultStackTrace" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

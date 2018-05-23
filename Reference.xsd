@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/Reference.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Reference.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:complexType name="ReferenceInformation_type">
+		<xs:sequence>
+			<xs:element name="Value" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="Type" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="Comments_type">
+		<xs:sequence>
+			<xs:element name="Category" type="xs:string"/>
+			<xs:element name="Text" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ReferenceInformation" type="ReferenceInformation_type"/>
+	<xs:element name="Comments" type="Comments_type"/>
+</xs:schema>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/OceanSchedule.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/OceanSchedule.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="ServiceSchedules" type="ServiceSchedules_type"/>
+	<xs:complexType name="ServiceSchedules_type">
+		<xs:sequence>
+			<xs:element ref="Header"/>
+			<xs:element ref="Transactions"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Header" type="Header_type"/>
+	<xs:element name="Transactions" type="Transactions_type"/>
+	<xs:complexType name="Header_type">
+		<xs:sequence>
+			<xs:element ref="SenderId"/>
+			<xs:element ref="ReceiverId"/>
+			<xs:element ref="DateTimeStamp"/>
+			<xs:element ref="ID"/>
+			<xs:element ref="SchemaVersion"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Transactions_type">
+		<xs:sequence>
+			<xs:element ref="Transaction" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SenderId" type="xs:string"/>
+	<xs:element name="ReceiverId" type="xs:string"/>
+	<xs:element name="DateTimeStamp" type="xs:string"/>
+	<xs:element name="ID" type="xs:string"/>
+	<xs:element name="SchemaVersion" type="xs:string"/>
+	<xs:element name="MessageDate" type="xs:string"/>
+	<xs:element name="MessageFunction" type="xs:string"/>
+	<xs:element name="Carrier" type="xs:string"/>
+	<xs:element name="Schs" type="Schs_type"/>
+	<xs:complexType name="Schs_type">
+		<xs:sequence>
+			<xs:element ref="Sch" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="Vsl" type="xs:string"/>
+		<xs:attribute name="Lloyds" type="xs:string"/>
+		<xs:attribute name="Valid" type="xs:string"/>
+		<xs:attribute name="Voy" type="xs:string"/>
+		<xs:attribute name="Service" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="Sch" type="Sch_type"/>
+	<xs:complexType name="Sch_type">
+		<xs:sequence>
+			<xs:element ref="Orig"/>
+			<xs:element ref="Dest"/>
+		</xs:sequence>
+		<xs:attribute name="Id" type="xs:string"/>
+		<xs:attribute name="Act" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="Orig" type="Orig_type"/>
+	<xs:complexType name="Orig_type">
+		<xs:attribute name="Type" type="xs:string"/>
+		<xs:attribute name="Code" type="xs:string"/>
+		<xs:attribute name="Departs" type="xs:string"/>
+		<xs:attribute name="Actual" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="Dest" type="Dest_type"/>
+	<xs:complexType name="Dest_type">
+		<xs:attribute name="Type" type="xs:string"/>
+		<xs:attribute name="Code" type="xs:string"/>
+		<xs:attribute name="Arrives" type="xs:string"/>
+		<xs:attribute name="Actual" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="Transaction_type">
+		<xs:sequence>
+			<xs:element ref="MessageDate"/>
+			<xs:element ref="MessageFunction"/>
+			<xs:element ref="Carrier"/>
+			<xs:element ref="Schs" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Transaction" type="Transaction_type"/>
+</xs:schema>

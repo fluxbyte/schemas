@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<Message xmlns = "http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmationV1_1.xsd" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmationV1_1.xsd MessageConfirmationV1_1.xsd">
+	<Header>
+		<ns2:SenderId xmlns:ns2 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageRequest.xsd"/>
+		<ns2:ReceiverId xmlns:ns2 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageRequest.xsd"/>
+		<ns2:RequestDateTimeStamp xmlns:ns2 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageRequest.xsd"/>
+		<ns2:RequestMessageVersion xmlns:ns2 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageRequest.xsd"/>
+		<ns2:TransactionType xmlns:ns2 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageRequest.xsd"/>
+		<ns2:TransactionVersion xmlns:ns2 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageRequest.xsd"/>
+		<ns2:DocumentIdentifier xmlns:ns2 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageRequest.xsd"/>
+		<ns2:TransactionStatus xmlns:ns2 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageRequest.xsd"/>
+	</Header>
+	<MessageBody>
+		<MessageProperties>
+			<ConfirmedWith>
+				<ns3:Type xmlns:ns3 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd"/>
+				<ns3:Name xmlns:ns3 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd"/>
+				<ns3:CommunicationDetails xmlns:ns3 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd"/>
+			</ConfirmedWith>
+			<ns0:DateTime xmlns:ns0 = "http://www.ilcs.co.id/schemas/INTRA/INTRA/DateTime.xsd"/>
+			<Party/>
+		</MessageProperties>
+		<MessageDetails/>
+	</MessageBody>
+</Message>

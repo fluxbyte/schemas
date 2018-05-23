@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:ns0="http://www.ilcs.co.id/schemas/INTRA/INTRA/Measurement.xsd"
+	 xmlns:ns2="http://www.ilcs.co.id/schemas/INTRA/INTRA/GoodsDetails.xsd"
+	 xmlns:ns1="http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd"
+	 xmlns:ns3="http://www.ilcs.co.id/schemas/INTRA/INTRA/Customs.xsd"
+	 xmlns:ns4="http://www.ilcs.co.id/schemas/INTRA/INTRA/Reference.xsd"
+	 xmlns:ns5="http://www.ilcs.co.id/schemas/INTRA/INTRA/DateTime.xsd"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/GoodsDetails.xsd"
+	 xmlns:ns6="http://www.ilcs.co.id/schemas/INTRA/INTRA/EquipmentDetails.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/GoodsDetails.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Measurement.xsd" schemaLocation="Measurement.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/EquipmentDetails.xsd" schemaLocation="EquipmentDetails.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd" schemaLocation="Party.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Customs.xsd" schemaLocation="Customs.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Reference.xsd" schemaLocation="Reference.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/DateTime.xsd" schemaLocation="DateTime.xsd"/>
+	<xs:element name="GoodsDetails" type="ns2:GoodsDetails_type"/>
+	<xs:element name="PackageDetail" type="ns2:PackageDetail_type"/>
+	<xs:element name="OuterPack">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ns2:Pack_type">
+					<xs:sequence>
+						<xs:element ref="ns2:InnerPack" minOccurs="0" maxOccurs="100"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GoodGrossVolume" type="ns0:GrossVolume_type"/>
+	<xs:element name="GoodGrossWeight" type="ns0:GrossWeight_type"/>
+	<xs:element name="InnerPack">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ns2:Pack_type">
+					<xs:sequence>
+						<xs:element ref="ns2:InnerInnerPack" minOccurs="0" maxOccurs="100"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InnerInnerPack" type="ns2:Pack_type"/>
+	<xs:element name="CommodityClassification" type="ns2:CommodityClassification_type"/>
+	<xs:element name="OutOfGaugeDimensions" type="ns0:Dimensions_type"/>
+	<xs:element name="SplitGoodsDetails" type="ns2:SplitGoodsDetails_type"/>
+	<xs:element name="HazardousGoods" type="ns2:HazardousGoods_type"/>
+	<xs:element name="FlashpointTemperature" type="ns0:Temperature_type"/>
+	<xs:element name="HazardousGoodsComments" type="ns4:Comments_type"/>
+	<xs:element name="CommunicationDetails" type="ns1:CommunicationDetails_type"/>
+	<xs:element name="EmergencyResponseContact" type="ns1:Contacts_type"/>
+	<xs:element name="HazardousGoodsWeight" type="ns0:GrossWeight_type"/>
+	<xs:element name="HazardousGoodsVolume" type="ns0:GrossVolume_type"/>
+	<xs:element name="HazardousGoodsRadioactivity" type="ns2:HazardousGoodsRadioactivity_type"/>
+	<xs:element name="HazardousGoodsAcidConcentrtn" type="ns2:HazardousGoodsAcidConcentrtn_type"/>
+	<xs:element name="HazardousGoodsSplitDetails" type="ns2:SplitGoodsDetails_type"/>
+	<xs:complexType name="SplitGoodsDetails_type">
+		<xs:sequence>
+			<xs:element name="EquipmentIdentifier" type="xs:string"/>
+			<xs:element name="NumberOfPackages" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Pack_type">
+		<xs:sequence>
+			<xs:element name="NumberOfPackages" type="xs:string" minOccurs="0"/>
+			<xs:element name="PackageTypeCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="PackageTypeDescription" type="xs:string" minOccurs="0"/>
+			<xs:element ref="ns2:GoodGrossVolume" minOccurs="0"/>
+			<xs:element ref="ns2:GoodGrossWeight" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PackageDetail_type">
+		<xs:sequence>
+			<xs:element ref="ns2:OuterPack"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HazardousGoods_type">
+		<xs:sequence>
+			<xs:element name="IMOClassCode" type="xs:string" maxOccurs="3"/>
+			<xs:element name="IMDGPageNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="HazardCodeVersionNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="PackingGroupCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="UNDGNumber" type="xs:string"/>
+			<xs:element ref="ns2:FlashpointTemperature" minOccurs="0"/>
+			<xs:element name="EMSNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="TremCardNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="ProperShippingName" type="xs:string"/>
+			<xs:element name="TransportInLimitedQuantities" type="xs:string" minOccurs="0"/>
+			<xs:element name="TechnicalName" type="xs:string" minOccurs="0"/>
+			<xs:element name="EmptyUncleanedReceptacle" type="xs:string" minOccurs="0"/>
+			<xs:element name="MarinePollutantStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="InhalantHazard" type="xs:string" minOccurs="0"/>
+			<xs:element name="AggregationState" type="xs:string" minOccurs="0"/>
+			<xs:element ref="ns2:HazardousGoodsComments" minOccurs="0" maxOccurs="4"/>
+			<xs:element name="IntermedBulkContainerCode" type="xs:string" minOccurs="0"/>
+			<xs:element ref="ns2:EmergencyResponseContact" minOccurs="0"/>
+			<xs:element ref="ns2:HazardousGoodsWeight" minOccurs="0"/>
+			<xs:element ref="ns2:HazardousGoodsVolume" minOccurs="0"/>
+			<xs:element ref="ns2:HazardousGoodsRadioactivity" minOccurs="0"/>
+			<xs:element ref="ns2:HazardousGoodsAcidConcentrtn" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HazardousGoodsRadioactivity_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="UOM" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="HazardousGoodsAcidConcentrtn_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="UOM" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CommodityClassification_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Type" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="GoodsDetails_type">
+		<xs:sequence>
+			<xs:element name="LineNumber" type="xs:string"/>
+			<xs:element ref="ns2:PackageDetail" minOccurs="0"/>
+			<xs:element ref="ns2:CommodityClassification" minOccurs="0" maxOccurs="2"/>
+			<xs:element name="GoodDescription" type="xs:string"/>
+			<xs:element ref="ns3:CustomsDeclarationInformation" minOccurs="0" maxOccurs="2"/>
+			<xs:element ref="ns2:OutOfGaugeDimensions" minOccurs="0"/>
+			<xs:element ref="ns2:DetailsReferenceInformation" minOccurs="0" maxOccurs="9"/>
+			<xs:element ref="ns2:ExportLicense" minOccurs="0"/>
+			<xs:element ref="ns2:SplitGoodsDetails" minOccurs="0" maxOccurs="999"/>
+			<xs:element ref="ns2:HazardousGoods" minOccurs="0" maxOccurs="99"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DetailsReferenceInformation" type="ns4:ReferenceInformation_type"/>
+	<xs:element name="ExportLicense" type="ns2:ExportLicense_type"/>
+	<xs:complexType name="ExportLicense_type">
+		<xs:sequence>
+			<xs:element name="Value" type="xs:string" minOccurs="0"/>
+			<xs:element ref="ns2:ExportLicenseNumber" minOccurs="0"/>
+			<xs:element ref="ns5:DateTime" minOccurs="0" maxOccurs="2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GoodsDetailsList_type">
+		<xs:sequence>
+			<xs:element ref="ns2:GoodsDetails" minOccurs="0" maxOccurs="999"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GoodsDetailsList" type="ns2:GoodsDetailsList_type"/>
+	<xs:element name="ExportLicenseNumber" type="xs:string"/>
+</xs:schema>

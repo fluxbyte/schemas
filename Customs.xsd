@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/Customs.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Customs.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="CustomsClearanceInstructions" type="CustomsClearanceInstructions_type"/>
+	<xs:element name="CustomsDeclarationInformation" type="CustomsDeclarationInformation_type"/>
+	<xs:complexType name="CustomsClearanceInstructions_type">
+		<xs:sequence>
+			<xs:element name="Filer" type="xs:string"/>
+			<xs:element name="FilingProgram" type="xs:string"/>
+			<xs:element name="FilerID">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="Type" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomsDeclarationInformation_type">
+		<xs:sequence>
+			<xs:element name="CustomsDeclarationInfoValue" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="Type" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="HeaderCustomsInformation_type">
+		<xs:sequence>
+			<xs:element ref="HeaderCustomsFilerInstruction" minOccurs="0" maxOccurs="9"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="HeaderCustomsFilerInstruction" type="CustomsFilerInstruction_type"/>
+	<xs:complexType name="CustomsFilerInstruction_type">
+		<xs:sequence>
+			<xs:element ref="ManifestFilingCountryCode" minOccurs="0"/>
+			<xs:element ref="ManifestFilingIdentification" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ManifestFilerStatus" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="ManifestFilingCountryCode">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="Agency" type="xs:string"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestFilingIdentification" type="xs:string"/>
+	<xs:element name="DetailsCustomsFilerInstruction" type="CustomsFilerInstruction_type"/>
+	<xs:complexType name="DetailsCustomsInformation_type">
+		<xs:sequence>
+			<xs:element ref="DetailsCustomsFilerInstruction" minOccurs="0" maxOccurs="9"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DetailsCustomsInformation" type="DetailsCustomsInformation_type"/>
+</xs:schema>

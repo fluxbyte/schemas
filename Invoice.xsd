@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/Invoice.xsd"
+	 xmlns:ns0="http://www.ilcs.co.id/schemas/INTRA/INTRA/ApplicationAcknowledgment.xsd"
+	 xmlns:ns1="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmation.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Invoice.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/ApplicationAcknowledgment.xsd" schemaLocation="ApplicationAcknowledgment.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmation.xsd" schemaLocation="MessageConfirmation.xsd"/>
+	<xs:element name="InvoiceMessage" type="InvoiceMessage_type"/>
+	<xs:complexType name="InvoiceMessage_type">
+		<xs:sequence>
+			<xs:element ref="Header"/>
+			<xs:element ref="MessageBody"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Header" type="ns0:Header_type"/>
+	<xs:element name="MessageBody" type="MessageBody_type"/>
+	<xs:complexType name="MessageBody_type">
+		<xs:sequence>
+			<xs:element ref="MessageProperties"/>
+			<xs:element ref="MessageDetails"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MessageProperties" type="MessageProperties_type"/>
+	<xs:element name="MessageDetails" type="MessageDetails_type"/>
+	<xs:complexType name="MessageProperties_type">
+		<xs:sequence>
+			<xs:element ref="TransactionStatus"/>
+			<xs:element ref="TransactionVersion"/>
+			<xs:element ref="TransactionSource"/>
+			<xs:element ref="InvoiceStructureType"/>
+			<xs:element ref="InvoiceId"/>
+			<xs:element ref="InvoiceType"/>
+			<xs:element ref="InvoiceSubType"/>
+			<xs:element ref="FullPartialDocInd" minOccurs="0"/>
+			<xs:element ref="ImpExpInd" minOccurs="0"/>
+			<xs:element ref="LanguagePreference" minOccurs="0"/>
+			<xs:element ref="MovementType" minOccurs="0"/>
+			<xs:element ref="AutomatchStatus"/>
+			<xs:element ref="UnexpectedChargeFlag" minOccurs="0"/>
+			<xs:element ref="ReviewFlag" minOccurs="0"/>
+			<xs:element ref="ContactInformation"/>
+			<xs:element ref="DateTime" maxOccurs="3"/>
+			<xs:element ref="Locations" minOccurs="0"/>
+			<xs:element ref="ReferenceInformation" minOccurs="0" maxOccurs="99"/>
+			<xs:element ref="Instructions" minOccurs="0"/>
+			<xs:element ref="GrossAmount"/>
+			<xs:element ref="TaxAmount" minOccurs="0"/>
+			<xs:element ref="NetAmount" minOccurs="0"/>
+			<xs:element ref="DiscountAmount" minOccurs="0"/>
+			<xs:element ref="Tax" minOccurs="0" maxOccurs="99"/>
+			<xs:element ref="Currency"/>
+			<xs:element ref="TransportationDetails" minOccurs="0" maxOccurs="99"/>
+			<xs:element ref="Parties"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MessageDetails_type">
+		<xs:sequence>
+			<xs:element ref="ChargeDetails" maxOccurs="9999"/>
+			<xs:element ref="ChargeSubTotalByCurrency" minOccurs="0" maxOccurs="9"/>
+			<xs:element ref="EquipmentDetails" minOccurs="0" maxOccurs="999"/>
+			<xs:element ref="GoodsDetails" minOccurs="0" maxOccurs="99"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="TransactionStatus" type="xs:string"/>
+	<xs:element name="TransactionVersion" type="xs:string"/>
+	<xs:element name="TransactionSource" type="xs:string"/>
+	<xs:element name="InvoiceStructureType" type="xs:string"/>
+	<xs:element name="InvoiceId" type="xs:string"/>
+	<xs:element name="InvoiceType" type="xs:string"/>
+	<xs:element name="InvoiceSubType" type="xs:string"/>
+	<xs:element name="FullPartialDocInd" type="xs:string"/>
+	<xs:element name="ImpExpInd" type="xs:string"/>
+	<xs:element name="LanguagePreference" type="xs:string"/>
+	<xs:element name="MovementType" type="xs:string"/>
+	<xs:element name="AutomatchStatus" type="xs:string"/>
+	<xs:element name="UnexpectedChargeFlag" type="xs:string"/>
+	<xs:element name="ReviewFlag" type="xs:string"/>
+	<xs:element name="ContactInformation" type="ns1:ContactInformation_type"/>
+	<xs:element name="DateTime" type="ns1:DateTime_type"/>
+	<xs:element name="Locations" type="Locations_type"/>
+	<xs:element name="ReferenceInformation" type="ReferenceInformation_type"/>
+	<xs:element name="Instructions" type="Instructions_type"/>
+	<xs:element name="GrossAmount" type="xs:string"/>
+	<xs:element name="TaxAmount" type="xs:string"/>
+	<xs:element name="NetAmount" type="xs:string"/>
+	<xs:element name="DiscountAmount" type="xs:string"/>
+	<xs:element name="Tax" type="Tax_type"/>
+	<xs:element name="Currency" type="Currency_type"/>
+	<xs:element name="TransportationDetails">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns1:TransportationDetails"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Parties" type="Parties_type"/>
+	<xs:complexType name="Locations_type">
+		<xs:sequence>
+			<xs:element ref="ns1:Location" maxOccurs="2"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferenceInformation_type">
+		<xs:sequence>
+			<xs:element ref="Value"/>
+			<xs:element ref="DateTime" minOccurs="0" maxOccurs="3"/>
+		</xs:sequence>
+		<xs:attribute name="ReferenceType" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="Value" type="xs:string"/>
+	<xs:complexType name="Instructions_type">
+		<xs:sequence>
+			<xs:element ref="Comments" maxOccurs="99"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Comments" type="Comments_type"/>
+	<xs:complexType name="Comments_type">
+		<xs:sequence>
+			<xs:element ref="Text" maxOccurs="5"/>
+		</xs:sequence>
+		<xs:attribute name="Type" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="Text" type="xs:string"/>
+	<xs:complexType name="Tax_type">
+		<xs:sequence>
+			<xs:element ref="Name"/>
+			<xs:element ref="PaymentLocation" minOccurs="0"/>
+			<xs:element ref="AssessmentBasis" minOccurs="0"/>
+			<xs:element ref="Percentage" minOccurs="0"/>
+			<xs:element ref="Amount" maxOccurs="2"/>
+		</xs:sequence>
+		<xs:attribute name="Type" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="Name" type="Name_type"/>
+	<xs:element name="PaymentLocation" type="xs:string"/>
+	<xs:element name="AssessmentBasis" type="xs:string"/>
+	<xs:element name="Percentage" type="xs:string"/>
+	<xs:element name="Amount" type="Amount_type"/>
+	<xs:complexType name="Name_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Code" type="xs:string"/>
+				<xs:attribute name="Identification" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Amount_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="AmountType" type="xs:string"/>
+				<xs:attribute name="Currency" type="xs:string"/>
+				<xs:attribute name="Usage" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Currency_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Usage" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Parties_type">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation" minOccurs="3" maxOccurs="99"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PartnerInformation" type="PartnerInformation_type"/>
+	<xs:complexType name="PartnerInformation_type">
+		<xs:sequence>
+			<xs:element ref="PartnerIdentifier"/>
+			<xs:element ref="PartnerName" maxOccurs="2"/>
+			<xs:element ref="ContactInformation" minOccurs="0" maxOccurs="9"/>
+			<xs:element ref="AddressInformation" minOccurs="0"/>
+			<xs:element ref="ReferenceInformation" minOccurs="0" maxOccurs="9"/>
+		</xs:sequence>
+		<xs:attribute name="PartnerRole" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="PartnerIdentifier" type="ns1:PartnerIdentifier_type"/>
+	<xs:element name="PartnerName" type="xs:string"/>
+	<xs:element name="AddressInformation" type="ns1:AddressInformation_type"/>
+	<xs:element name="ChargeDetails" type="xs:string"/>
+	<xs:element name="ChargeSubTotalByCurrency" type="xs:string"/>
+	<xs:element name="EquipmentDetails" type="xs:string"/>
+	<xs:element name="GoodsDetails" type="xs:string"/>
+</xs:schema>

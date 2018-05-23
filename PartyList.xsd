@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/PartyList.xsd"
+	 xmlns:ns0="http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd"
+	 xmlns:ns2="http://www.ilcs.co.id/schemas/INTRA/INTRA/EquipmentDetails.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/PartyList.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd" schemaLocation="Party.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/EquipmentDetails.xsd" schemaLocation="EquipmentDetails.xsd"/>
+	<xs:element name="PartyList" type="PartyList_type"/>
+	<xs:complexType name="PartyList_type">
+		<xs:choice>
+			<xs:element ref="ns0:Party"/>
+			<xs:element ref="ns2:EquipmentParty"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

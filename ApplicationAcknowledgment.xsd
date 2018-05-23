@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/ApplicationAcknowledgment.xsd"
+	 xmlns:ns0="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmation.xsd"
+	 xmlns:ns2="http://www.ilcs.co.id/schemas/INTRA/INTRA/GoodsDetails.xsd"
+	 xmlns:ns1="http://www.ilcs.co.id/schemas/INTRA/INTRA/ShippingInstruction.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/ApplicationAcknowledgment.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmation.xsd" schemaLocation="MessageConfirmation.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/GoodsDetails.xsd" schemaLocation="GoodsDetails.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/ShippingInstruction.xsd" schemaLocation="ShippingInstruction.xsd"/>
+	<xs:element name="Message" type="Message_type"/>
+	<xs:complexType name="Message_type">
+		<xs:sequence>
+			<xs:element ref="Header"/>
+			<xs:element ref="MessageBody"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Header" type="Header_type"/>
+	<xs:element name="MessageBody" type="MessageBody_type"/>
+	<xs:complexType name="Header_type">
+		<xs:sequence>
+			<xs:element ref="MessageType"/>
+			<xs:element ref="DocumentIdentifier"/>
+			<xs:element ref="DateTime"/>
+			<xs:element ref="Parties"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MessageBody_type">
+		<xs:sequence>
+			<xs:element ref="MessageProperties"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MessageProperties" type="MessageProperties_type"/>
+	<xs:complexType name="MessageProperties_type">
+		<xs:sequence>
+			<xs:element ref="ShipmentID"/>
+			<xs:element ref="DateTime"/>
+			<xs:element ref="LetterOfCreditDetails" minOccurs="0"/>
+			<xs:element ref="ExportLicenseDetails" minOccurs="0" maxOccurs="9"/>
+			<xs:element ref="ReferenceInformation" maxOccurs="9"/>
+			<xs:element ref="Instructions"/>
+			<xs:element ref="Parties"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MessageType" type="ns0:MessageType_type"/>
+	<xs:element name="DocumentIdentifier" type="ns0:DocumentIdentifier_type"/>
+	<xs:element name="DateTime" type="ns0:DateTime_type"/>
+	<xs:element name="Parties" type="ns0:Parties_type"/>
+	<xs:element name="ShipmentID" type="ns0:ShipmentID_type"/>
+	<xs:element name="LetterOfCreditDetails" type="ns1:LetterOfCreditDetails_type"/>
+	<xs:element name="ExportLicenseDetails" type="ns2:ExportLicense_type"/>
+	<xs:element name="ReferenceInformation" type="ns0:ReferenceInformation_type"/>
+	<xs:element name="Instructions" type="ns0:Instructions_type"/>
+</xs:schema>

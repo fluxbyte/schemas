@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmationV1_1.xsd"
+	 xmlns:ns0="http://www.ilcs.co.id/schemas/INTRA/INTRA/DateTime.xsd"
+	 xmlns:ns1="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageProperties.xsd"
+	 xmlns:ns2="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageRequest.xsd"
+	 xmlns:ns3="http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd"
+	 xmlns:ns4="http://www.ilcs.co.id/schemas/INTRA/INTRA/Location.xsd"
+	 xmlns:ns5="http://www.ilcs.co.id/schemas/INTRA/INTRA/GoodsDetails.xsd"
+	 xmlns:ns6="http://www.ilcs.co.id/schemas/INTRA/INTRA/EquipmentDetails.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmationV1_1.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/DateTime.xsd" schemaLocation="DateTime.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageProperties.xsd" schemaLocation="MessageProperties.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageRequest.xsd" schemaLocation="MessageRequest.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd" schemaLocation="Party.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Location.xsd" schemaLocation="Location.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/GoodsDetails.xsd" schemaLocation="GoodsDetails.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/EquipmentDetails.xsd" schemaLocation="EquipmentDetails.xsd"/>
+	<xs:complexType name="Message_type">
+		<xs:sequence>
+			<xs:element ref="Header"/>
+			<xs:element ref="MessageBody"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Header" type="ns2:Header_type"/>
+	<xs:element name="MessageBody" type="MessageBody_type"/>
+	<xs:complexType name="MessageBody_type">
+		<xs:sequence>
+			<xs:element ref="MessageProperties"/>
+			<xs:element ref="MessageDetails"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MessageProperties" type="MessageProperties_type"/>
+	<xs:element name="MessageDetails" type="MessageDetails_type"/>
+	<xs:complexType name="MessageProperties_type">
+		<xs:sequence>
+			<xs:element ref="ns1:ShipmentID" minOccurs="0"/>
+			<xs:element ref="ConfirmedWith"/>
+			<xs:element ref="ns0:DateTime" maxOccurs="3"/>
+			<xs:element ref="ns1:MovementType" minOccurs="0"/>
+			<xs:element ref="CarrierReasonForSplitting" minOccurs="0"/>
+			<xs:element ref="CarrierReasonForPending" minOccurs="0"/>
+			<xs:element ref="CarrierComments" minOccurs="0" maxOccurs="4"/>
+			<xs:element ref="CustomsClearanceInstructions" minOccurs="0"/>
+			<xs:element ref="CustomsDeclarationInformation" minOccurs="0" maxOccurs="2"/>
+			<xs:element ref="NatureOfCargo" minOccurs="0" maxOccurs="4"/>
+			<xs:element ref="Location" minOccurs="0" maxOccurs="4"/>
+			<xs:element ref="ReferenceInformation" minOccurs="0" maxOccurs="98"/>
+			<xs:element ref="ExportLicense" minOccurs="0"/>
+			<xs:element ref="TransportationDetails" minOccurs="0" maxOccurs="99"/>
+			<xs:element ref="Party" maxOccurs="11"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MessageDetails_type">
+		<xs:sequence>
+			<xs:element ref="ns5:GoodsDetails" minOccurs="0" maxOccurs="999"/>
+			<xs:element ref="ns6:EquipmentDetails" minOccurs="0" maxOccurs="999"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ConfirmedWith" type="ns3:Contacts_type"/>
+	<xs:element name="CarrierReasonForSplitting" type="CarrierReasonForSplitting_type"/>
+	<xs:element name="CarrierReasonForPending" type="CarrierReasonForPending_type"/>
+	<xs:element name="CarrierComments" type="Comments_type"/>
+	<xs:element name="CustomsClearanceInstructions" type="CustomsClearanceInstructions_type"/>
+	<xs:element name="CustomsDeclarationInformation" type="CustomsDeclarationInformation_type"/>
+	<xs:element name="NatureOfCargo" type="xs:string"/>
+	<xs:element name="Location" type="ns4:Location_type"/>
+	<xs:element name="ReferenceInformation" type="ReferenceInformation_type"/>
+	<xs:element name="ExportLicense" type="ns5:ExportLicense_type"/>
+	<xs:element name="TransportationDetails" type="ns1:TransportationDetails_type"/>
+	<xs:element name="Party" type="ns3:Party_type"/>
+	<xs:complexType name="CarrierReasonForSplitting_type">
+		<xs:sequence>
+			<xs:element name="ParentBookingNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="SplitBookingSequence" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReasonForSplittingInformation" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReasonForSplittingIndicator" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CarrierReasonForPending_type">
+		<xs:sequence>
+			<xs:element name="ReasonForPending" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReasonForPendIndicator" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Comments_type">
+		<xs:sequence>
+			<xs:element name="Category" type="xs:string"/>
+			<xs:element name="Text" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomsClearanceInstructions_type">
+		<xs:sequence>
+			<xs:element name="Filer" type="xs:string"/>
+			<xs:element name="FilingProgram" type="xs:string" minOccurs="0"/>
+			<xs:element name="FilerID" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="Type" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomsDeclarationInformation_type">
+		<xs:sequence>
+			<xs:element name="CustomsDeclarationInfoValue" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="Type" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ReferenceInformation_type">
+		<xs:sequence>
+			<xs:element name="Value" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="Type" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="Message" type="Message_type"/>
+</xs:schema>
