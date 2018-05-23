@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/ServiceInfo.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/ServiceInfo.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="ServiceInfo">
+		<xs:complexType/>
+	</xs:element>
+	<xs:complexType name="ServiceInfo_type"/>
+	<xs:complexType name="ServiceResponse_type">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="statusCode" type="xs:string"/>
+			<xs:element name="statusDescription" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ServiceResponse" type="ServiceResponse_type"/>
+</xs:schema>

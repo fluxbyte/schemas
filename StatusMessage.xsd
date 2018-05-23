@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/SharedResources/Schemas/INTRA/Schema.xsd"
+	 xmlns:ns0="http://www.ilcs.co.id/schemas/INTRA/INTRA/ApplicationAcknowledgment.xsd"
+	 xmlns:ns1="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmation.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/SharedResources/Schemas/INTRA/Schema.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/ApplicationAcknowledgment.xsd" schemaLocation="ApplicationAcknowledgment.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmation.xsd" schemaLocation="MessageConfirmation.xsd"/>
+	<xs:element name="Message" type="Message_type"/>
+	<xs:complexType name="Message_type">
+		<xs:sequence>
+			<xs:element ref="Header"/>
+			<xs:element ref="MessageBody"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Header" type="ns0:Header_type"/>
+	<xs:element name="MessageBody" type="MessageBody_type"/>
+	<xs:complexType name="MessageBody_type">
+		<xs:sequence>
+			<xs:element ref="MessageProperties"/>
+			<xs:element ref="MessageDetails"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MessageProperties" type="MessageProperties_type"/>
+	<xs:element name="MessageDetails" type="MessageDetails_type"/>
+	<xs:complexType name="MessageProperties_type">
+		<xs:sequence>
+			<xs:element ref="EventCode"/>
+			<xs:element ref="EventLocation"/>
+			<xs:element ref="ReferenceInformation" maxOccurs="30"/>
+			<xs:element ref="Instructions" minOccurs="0"/>
+			<xs:element ref="TransportationDetails" minOccurs="0"/>
+			<xs:element ref="Parties"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MessageDetails_type">
+		<xs:sequence>
+			<xs:element ref="EquipmentDetails"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EventCode" type="xs:string"/>
+	<xs:element name="EventLocation" type="EventLocation_type"/>
+	<xs:element name="ReferenceInformation" type="ns1:ReferenceInformation_type"/>
+	<xs:element name="Instructions" type="ns1:Instructions_type"/>
+	<xs:element name="TransportationDetails" type="ns1:TransportationDetails_type"/>
+	<xs:element name="Parties" type="ns1:Parties_type"/>
+	<xs:element name="EquipmentDetails" type="EquipmentDetails_type"/>
+	<xs:complexType name="EquipmentDetails_type">
+		<xs:sequence>
+			<xs:element ref="LineNumber"/>
+			<xs:element ref="EquipmentIdentifier"/>
+			<xs:element ref="EquipmentType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LineNumber" type="xs:string"/>
+	<xs:element name="EquipmentIdentifier" type="EquipmentIdentifier"/>
+	<xs:element name="EquipmentType">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EquipmentTypeCode"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="EquipmentIdentifier">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="LoadType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="EquipmentTypeCode" type="xs:string"/>
+	<xs:complexType name="EventLocation_type">
+		<xs:sequence>
+			<xs:element ref="Location"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Location" type="ns1:Location_type"/>
+</xs:schema>

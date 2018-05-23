@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:ns0="http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd"
+	 xmlns:ns1="http://www.ilcs.co.id/schemas/INTRA/INTRA/Measurement.xsd"
+	 xmlns:ns2="http://www.ilcs.co.id/schemas/INTRA/INTRA/EquipmentDetails.xsd"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/EquipmentDetails.xsd"
+	 xmlns:ns3="http://www.ilcs.co.id/schemas/INTRA/INTRA/Customs.xsd"
+	 xmlns:ns4="http://www.ilcs.co.id/schemas/INTRA/INTRA/Reference.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/EquipmentDetails.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd" schemaLocation="Party.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Measurement.xsd" schemaLocation="Measurement.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Customs.xsd" schemaLocation="Customs.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Reference.xsd" schemaLocation="Reference.xsd"/>
+	<xs:element name="EquipmentParty" type="ns0:Party_type"/>
+	<xs:element name="Identifier" type="ns0:Identifier_type"/>
+	<xs:element name="Address" type="ns0:Address_type"/>
+	<xs:element name="Contacts" type="ns0:Contacts_type"/>
+	<xs:element name="CommunicationDetails" type="ns0:CommunicationDetails_type"/>
+	<xs:element name="EquipmentDetails" type="ns2:EquipmentDetails_type"/>
+	<xs:element name="EquipmentIdentifier">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="EquipmentIdentifierType" type="xs:string"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EquipmentType" type="ns2:EquipmentType_type"/>
+	<xs:element name="ImportExportHaulage" type="ns2:ImportExportHaulage_type"/>
+	<xs:element name="EquipmentGrossWeight" type="ns1:GrossWeight_type"/>
+	<xs:element name="EquipmentGrossVolume" type="ns1:GrossVolume_type"/>
+	<xs:element name="EquipmentHumidity" type="ns1:Humidity_type"/>
+	<xs:element name="EquipmentAirFlow" type="ns1:AirFlow_type"/>
+	<xs:element name="EquipmentGasLevel" type="ns1:GasLevel_type"/>
+	<xs:element name="EquipmentDetailsDimensions" type="ns1:Dimensions_type"/>
+	<xs:element name="EquipmentTemperature" type="ns1:Temperature_type"/>
+	<xs:element name="SpecialHandling" type="ns2:SpecialHandling_type"/>
+	<xs:element name="EquipmentComments" type="ns4:Comments_type"/>
+	<xs:element name="EquipmentReferenceInformation" type="ns4:ReferenceInformation_type"/>
+	<xs:complexType name="SpecialHandling_type">
+		<xs:sequence>
+			<xs:element name="EquipmentControlledAtmosphere" type="xs:string" minOccurs="0"/>
+			<xs:element name="SuperFreezerService" type="xs:string" minOccurs="0"/>
+			<xs:element name="GensetRequired" type="xs:string" minOccurs="0"/>
+			<xs:element name="Humidity" type="xs:string" minOccurs="0"/>
+			<xs:element name="InTransitColdSterilization" type="xs:string" minOccurs="0"/>
+			<xs:element name="NumberOfTemperatureProbes" type="xs:string" minOccurs="0"/>
+			<xs:element name="NumberOfUSDProbes" type="xs:string" minOccurs="0"/>
+			<xs:element name="TemperatureVariance" type="xs:string" minOccurs="0"/>
+			<xs:element name="VentSetting" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImportExportHaulage_type">
+		<xs:sequence>
+			<xs:element name="CargoMovementType" type="xs:string"/>
+			<xs:element name="HaulageArrangements" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EquipmentType_type">
+		<xs:sequence>
+			<xs:element name="EquipmentTypeCode" type="xs:string"/>
+			<xs:element name="EquipmentDescription" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EquipmentDetails_type">
+		<xs:sequence>
+			<xs:element ref="ns2:EquipmentIdentifier" minOccurs="0"/>
+			<xs:element ref="ns2:EquipmentType"/>
+			<xs:element name="NumberOfEquipment" type="xs:string"/>
+			<xs:element ref="ns2:ImportExportHaulage"/>
+			<xs:element ref="ns2:EquipmentGrossWeight" minOccurs="0"/>
+			<xs:element ref="ns2:EquipmentGrossVolume" minOccurs="0"/>
+			<xs:element ref="ns2:EquipmentHumidity" minOccurs="0"/>
+			<xs:element ref="ns2:EquipmentAirFlow" minOccurs="0"/>
+			<xs:element ref="ns2:EquipmentGasLevel" minOccurs="0" maxOccurs="3"/>
+			<xs:element ref="ns2:EquipmentDetailsDimensions" minOccurs="0"/>
+			<xs:element ref="ns2:NonActiveReefer" minOccurs="0"/>
+			<xs:element ref="ns2:EquipmentTemperature" minOccurs="0"/>
+			<xs:element ref="ns2:SpecialHandling" minOccurs="0"/>
+			<xs:element ref="ns2:EquipmentComments" minOccurs="0" maxOccurs="2"/>
+			<xs:element ref="ns3:CustomsDeclarationInformation" minOccurs="0" maxOccurs="2"/>
+			<xs:element name="StowageInstructions" type="xs:string" minOccurs="0"/>
+			<xs:element name="SpecialServiceRequest" minOccurs="0" maxOccurs="6">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="EquipmentIdentifierType" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ns2:EquipmentReferenceInformation" minOccurs="0" maxOccurs="9"/>
+			<xs:element ref="ns2:EquipmentParty" minOccurs="0" maxOccurs="9"/>
+		</xs:sequence>
+		<xs:attribute name="EquipmentSupplier" type="xs:string"/>
+		<xs:attribute name="FullEmptyIndicator" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="NonActiveReefer_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="NonActiveReefer" type="ns2:NonActiveReefer_type"/>
+	<xs:complexType name="EquipmentDetailsList_type">
+		<xs:sequence>
+			<xs:element ref="ns2:EquipmentDetails" minOccurs="0" maxOccurs="999"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EquipmentDetailsList" type="ns2:EquipmentDetailsList_type"/>
+</xs:schema>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd"
+	 xmlns:ns0="http://www.ilcs.co.id/schemas/INTRA/INTRA/Location.xsd"
+	 xmlns:ns1="http://www.ilcs.co.id/schemas/INTRA/INTRA/DateTime.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Party.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/Location.xsd" schemaLocation="Location.xsd"/>
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/DateTime.xsd" schemaLocation="DateTime.xsd"/>
+	<xs:element name="Contacts" type="Contacts_type"/>
+	<xs:element name="CommunicationDetails" type="CommunicationDetails_type"/>
+	<xs:element name="Address" type="Address_type"/>
+	<xs:element name="Party" type="Party_type"/>
+	<xs:element name="ChargeCategory" type="ChargeCategory_type"/>
+	<xs:element name="ChargeLocation" type="ChargeLocation_type"/>
+	<xs:complexType name="ChargeLocation_type">
+		<xs:complexContent>
+			<xs:extension base="ns0:Location_type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Party_type">
+		<xs:sequence>
+			<xs:element ref="Role" minOccurs="0"/>
+			<xs:element ref="Name" minOccurs="0"/>
+			<xs:element ref="Identifier" minOccurs="0"/>
+			<xs:element ref="Address" minOccurs="0"/>
+			<xs:element ref="ns1:DateTime" minOccurs="0" maxOccurs="2"/>
+			<xs:element ref="Contacts" minOccurs="0" maxOccurs="9"/>
+			<xs:element ref="ChargeCategory" minOccurs="0" maxOccurs="6"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Address_type">
+		<xs:sequence>
+			<xs:element ref="StreetAddress" minOccurs="0"/>
+			<xs:element ref="CityName" minOccurs="0"/>
+			<xs:element ref="Subdivision" minOccurs="0"/>
+			<xs:element ref="PostalCode" minOccurs="0"/>
+			<xs:element ref="CountryCode" minOccurs="0"/>
+			<xs:element ref="CountryName" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CommunicationDetails_type">
+		<xs:sequence>
+			<xs:element ref="Phone" minOccurs="0" maxOccurs="9"/>
+			<xs:element ref="Fax" minOccurs="0" maxOccurs="9"/>
+			<xs:element ref="Email" minOccurs="0" maxOccurs="9"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Contacts_type">
+		<xs:sequence>
+			<xs:element ref="Type"/>
+			<xs:element ref="Name"/>
+			<xs:element ref="CommunicationDetails"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Type" type="Type_type"/>
+	<xs:element name="Name" type="Name_type"/>
+	<xs:complexType name="PartyList">
+		<xs:sequence>
+			<xs:element ref="Party" minOccurs="2" maxOccurs="11"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Email" type="Email_type"/>
+	<xs:element name="Phone" type="Phone_type"/>
+	<xs:element name="Fax" type="Fax_type"/>
+	<xs:element name="Role" type="Role_type"/>
+	<xs:element name="Identifier" type="Identifier_type"/>
+	<xs:complexType name="Identifier_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Type" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="StreetAddress" type="StreetAddress_type"/>
+	<xs:element name="CityName" type="CityName_type"/>
+	<xs:element name="Subdivision" type="Subdivision_type"/>
+	<xs:element name="PostalCode" type="PostalCode_type"/>
+	<xs:element name="CountryCode" type="CountryCode_type"/>
+	<xs:element name="CountryName" type="CountryName_type"/>
+	<xs:complexType name="CountryCode_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="StreetAddress_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CityName_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Subdivision_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PostalCode_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CountryName_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Type_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Name_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Email_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Phone_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Fax_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Role_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ChargeCategory_type">
+		<xs:sequence>
+			<xs:element name="PrepaidCollector" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="PrepaidorCollectIndicator" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ChargeLocation" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ChargeType" type="xs:string"/>
+		<xs:attribute name="PrepaidorCollectIndicator" type="xs:string"/>
+	</xs:complexType>
+</xs:schema>

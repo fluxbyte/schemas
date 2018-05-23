@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmation.xsd"
+	 xmlns:ns0="http://www.ilcs.co.id/schemas/INTRA/INTRA/DateTime.xsd"
+	 targetNamespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/MessageConfirmation.xsd"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.ilcs.co.id/schemas/INTRA/INTRA/DateTime.xsd" schemaLocation="DateTime.xsd"/>
+	<xs:element name="Message" type="Message_type"/>
+	<xs:complexType name="Message_type">
+		<xs:sequence>
+			<xs:element ref="Header"/>
+			<xs:element ref="MessageBody"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Header" type="Header_type"/>
+	<xs:element name="MessageBody" type="MessageBody_type"/>
+	<xs:complexType name="MessageBody_type">
+		<xs:sequence>
+			<xs:element ref="MessageProperties"/>
+			<xs:element ref="MessageDetails"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MessageProperties" type="MessageProperties_type"/>
+	<xs:element name="MessageDetails" type="MessageDetails_type"/>
+	<xs:complexType name="MessageDetails_type">
+		<xs:sequence>
+			<xs:element ref="EquipmentDetails" minOccurs="0" maxOccurs="999"/>
+			<xs:element ref="GoodsDetails" maxOccurs="999"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EquipmentDetails" type="EquipmentDetails_type"/>
+	<xs:element name="GoodsDetails" type="GoodsDetails_type"/>
+	<xs:complexType name="Header_type">
+		<xs:sequence>
+			<xs:element ref="MessageType"/>
+			<xs:element ref="DocumentIdentifier"/>
+			<xs:element ref="DateTime"/>
+			<xs:element ref="Parties"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MessageType" type="MessageType_type"/>
+	<xs:element name="DocumentIdentifier" type="xs:string"/>
+	<xs:element name="DateTime" type="DateTime_type"/>
+	<xs:element name="Parties" type="Parties_type"/>
+	<xs:complexType name="Parties_type">
+		<xs:sequence>
+			<xs:element ref="PartnerInformation" minOccurs="2" maxOccurs="99"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateTime_type">
+		<xs:simpleContent>
+			<xs:extension base="ns0:DateTime_type"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="DocumentIdentifier_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="MessageType_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="MessageVersion" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="PartnerInformation" type="PartnerInformation_type"/>
+	<xs:complexType name="PartnerInformation_type">
+		<xs:sequence>
+			<xs:element ref="PartnerIdentifier" minOccurs="0"/>
+			<xs:element ref="PartnerName" minOccurs="0" maxOccurs="2"/>
+			<xs:element ref="ContactInformation" minOccurs="0" maxOccurs="9"/>
+			<xs:element ref="AddressInformation" minOccurs="0"/>
+			<xs:element ref="DocumentationRequirements" minOccurs="0" maxOccurs="9"/>
+			<xs:element ref="PartyReferenceInformation" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="PartnerRole" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="PartnerIdentifier" type="PartnerIdentifier_type"/>
+	<xs:complexType name="PartnerIdentifier_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Agency" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="PartnerName" type="PartnerName_type"/>
+	<xs:element name="ContactInformation" type="ContactInformation_type"/>
+	<xs:complexType name="ContactInformation_type">
+		<xs:sequence>
+			<xs:element ref="ContactName"/>
+			<xs:element ref="WebBLDocuments" minOccurs="0"/>
+			<xs:element ref="CommunicationValue" minOccurs="0" maxOccurs="9"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartnerName_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="ContactName" type="ContactName_type"/>
+	<xs:element name="CommunicationValue" type="CommunicationValue_type"/>
+	<xs:complexType name="ContactName_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="ContactType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CommunicationValue_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="CommunicationType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="MessageProperties_type">
+		<xs:sequence>
+			<xs:element ref="ShipmentID"/>
+			<xs:element ref="DateTime"/>
+			<xs:element ref="ContactInformation"/>
+			<xs:element ref="ReferenceInformation" minOccurs="2" maxOccurs="99"/>
+			<xs:element ref="Instructions" minOccurs="0"/>
+			<xs:element ref="HaulageDetails"/>
+			<xs:element ref="TransportationDetails"/>
+			<xs:element ref="Parties"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ShipmentID" type="ShipmentID_type"/>
+	<xs:element name="ReferenceInformation" type="ReferenceInformation_type"/>
+	<xs:element name="Instructions" type="Instructions_type"/>
+	<xs:element name="HaulageDetails" type="HaulageDetails_type"/>
+	<xs:element name="TransportationDetails" type="TransportationDetails_type"/>
+	<xs:complexType name="ShipmentID_type">
+		<xs:sequence>
+			<xs:element ref="ShipmentIdentifier"/>
+			<xs:element ref="DocumentVersion" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferenceInformation_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="ReferenceType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Instructions_type">
+		<xs:sequence>
+			<xs:element ref="ShipmentComments" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HaulageDetails_type">
+		<xs:attribute name="MovementType" type="xs:string"/>
+		<xs:attribute name="ServiceType" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="TransportationDetails_type">
+		<xs:sequence>
+			<xs:element ref="ConveyanceInformation" minOccurs="0"/>
+			<xs:element ref="DateTime" minOccurs="0" maxOccurs="2"/>
+			<xs:element ref="Location" maxOccurs="5"/>
+			<xs:element ref="LocalVoyageNumber" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="TransportStage" type="xs:string"/>
+		<xs:attribute name="TransportMode" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="ShipmentIdentifier" type="ShipmentIdentifier_type"/>
+	<xs:complexType name="ShipmentIdentifier_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="MessageStatus" type="xs:string"/>
+				<xs:attribute name="Acknowledgment" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="ShipmentComments" type="ShipmentComments_type"/>
+	<xs:complexType name="ShipmentComments_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="CommentType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="ConveyanceInformation" type="ConveyanceInformation_type"/>
+	<xs:complexType name="ConveyanceInformation_type">
+		<xs:sequence>
+			<xs:element ref="ConveyanceName" minOccurs="0"/>
+			<xs:element ref="VoyageTripNumber" minOccurs="0"/>
+			<xs:element ref="CarrierSCAC" minOccurs="0"/>
+			<xs:element ref="TransportIdentification" minOccurs="0"/>
+			<xs:element ref="TransportMeans" minOccurs="0"/>
+			<xs:element ref="TransportNationality" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ConveyanceName" type="xs:string"/>
+	<xs:element name="VoyageTripNumber" type="xs:string"/>
+	<xs:element name="CarrierSCAC" type="xs:string"/>
+	<xs:element name="Location" type="Location_type"/>
+	<xs:complexType name="Location_type">
+		<xs:sequence>
+			<xs:element ref="LocationCode" minOccurs="0"/>
+			<xs:element ref="LocationName" minOccurs="0"/>
+			<xs:element ref="LocationCountryCode" minOccurs="0"/>
+			<xs:element ref="LocationCountry" minOccurs="0"/>
+			<xs:element ref="DateTime" minOccurs="0" maxOccurs="4"/>
+		</xs:sequence>
+		<xs:attribute name="LocationType" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="LocationCode" type="LocationCode_type"/>
+	<xs:element name="LocationName" type="xs:string"/>
+	<xs:complexType name="LocationCode_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Agency" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="AddressInformation" type="AddressInformation_type"/>
+	<xs:complexType name="AddressInformation_type">
+		<xs:sequence>
+			<xs:element ref="AddressLine" maxOccurs="4"/>
+			<xs:element ref="City" minOccurs="0"/>
+			<xs:element ref="StateProvince" minOccurs="0"/>
+			<xs:element ref="PostalCode" minOccurs="0"/>
+			<xs:element ref="CountryCode" minOccurs="0"/>
+			<xs:element ref="Street" minOccurs="0" maxOccurs="2"/>
+			<xs:element ref="LocationCountryCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="AddressLine" type="AddressLine_type"/>
+	<xs:complexType name="AddressLine_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="EquipmentDetails_type">
+		<xs:sequence>
+			<xs:element ref="LineNumber"/>
+			<xs:element ref="EquipmentType" minOccurs="0"/>
+			<xs:element ref="EquipmentCount" minOccurs="0"/>
+			<xs:element ref="EquipmentTemperature" minOccurs="0"/>
+			<xs:element ref="EquipmentAirFlow" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GoodsDetails_type">
+		<xs:sequence>
+			<xs:element ref="LineNumber"/>
+			<xs:element ref="PackageDetail"/>
+			<xs:element ref="PackageDetailComments"/>
+			<xs:element ref="HumidityPercentage" minOccurs="0"/>
+			<xs:element ref="PackageDetailWeight"/>
+			<xs:element ref="HazardousGoods" minOccurs="0" maxOccurs="99"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LineNumber" type="xs:string"/>
+	<xs:element name="EquipmentType" type="EquipmentType_type"/>
+	<xs:element name="EquipmentCount" type="xs:string"/>
+	<xs:element name="EquipmentTemperature" type="EquipmentTemperature_type"/>
+	<xs:element name="EquipmentAirFlow" type="EquipmentAirFlow_type"/>
+	<xs:complexType name="EquipmentType_type">
+		<xs:sequence>
+			<xs:element ref="EquipmentTypeCode" minOccurs="0"/>
+			<xs:element ref="EquipmentDescription" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EquipmentTemperature_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="UOM" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="EquipmentAirFlow_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="UOM" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="EquipmentTypeCode" type="xs:string"/>
+	<xs:element name="PackageDetail" type="PackageDetail_type"/>
+	<xs:element name="PackageDetailComments" type="Comments_type"/>
+	<xs:element name="HumidityPercentage" type="xs:string"/>
+	<xs:element name="PackageDetailWeight" type="PackageDetailWeight_type"/>
+	<xs:element name="HazardousGoods" type="HazardousGoods_type"/>
+	<xs:complexType name="PackageDetail_type">
+		<xs:sequence>
+			<xs:element name="NumberOfPackages" type="xs:string"/>
+			<xs:element name="PackageTypeCode" type="xs:string" minOccurs="0"/>
+			<xs:element ref="PackageTypeDescription" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="Level" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="Comments_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="CommentType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PackageDetailWeight_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="UOM" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="HazardousGoods_type">
+		<xs:sequence>
+			<xs:element ref="IMOClassCode"/>
+			<xs:element ref="IMDGPageNumber" minOccurs="0"/>
+			<xs:element ref="UNDGNumber" minOccurs="0"/>
+			<xs:element ref="FlashpointTemperature" minOccurs="0"/>
+			<xs:element ref="EMSNumber" minOccurs="0"/>
+			<xs:element ref="HazardousGoodsComments" minOccurs="0" maxOccurs="99"/>
+			<xs:element ref="EmergencyResponseContact"/>
+		</xs:sequence>
+		<xs:attribute name="PackingGroupCode" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="IMOClassCode" type="xs:string"/>
+	<xs:element name="IMDGPageNumber" type="xs:string"/>
+	<xs:element name="UNDGNumber" type="xs:string"/>
+	<xs:element name="FlashpointTemperature" type="FlashpointTemperature_type"/>
+	<xs:element name="HazardousGoodsComments" type="Comments_type"/>
+	<xs:element name="EmergencyResponseContact" type="EmergencyResponseContact_type"/>
+	<xs:complexType name="EmergencyResponseContact_type">
+		<xs:sequence>
+			<xs:element ref="ContactInformation" maxOccurs="9"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DocumentVersion" type="xs:string"/>
+	<xs:element name="TransportIdentification" type="TransportIdentification_type"/>
+	<xs:complexType name="TransportIdentification_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="TransportIdentificationType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="LocationCountry" type="xs:string"/>
+	<xs:element name="WebBLDocuments" type="WebBLDocuments_type"/>
+	<xs:complexType name="WebBLDocuments_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="BLDocType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="City" type="xs:string"/>
+	<xs:element name="StateProvince" type="xs:string"/>
+	<xs:element name="PostalCode" type="xs:string"/>
+	<xs:element name="CountryCode" type="xs:string"/>
+	<xs:element name="Street" type="xs:string"/>
+	<xs:element name="DocumentationRequirements" type="DocumentationRequirements_type"/>
+	<xs:element name="PartyReferenceInformation" type="PartyReferenceInformation_type"/>
+	<xs:complexType name="DocumentationRequirements_type">
+		<xs:sequence>
+			<xs:element ref="Documents"/>
+			<xs:element ref="Quantity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartyReferenceInformation_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="ReferenceType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="Documents" type="Documents_type"/>
+	<xs:complexType name="Documents_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="DocumentType" type="xs:string"/>
+				<xs:attribute name="Freighted" type="xs:string"/>
+				<xs:attribute name="Parent" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="Quantity" type="xs:string"/>
+	<xs:element name="EquipmentDescription" type="xs:string"/>
+	<xs:element name="PackageTypeDescription" type="xs:string"/>
+	<xs:element name="EMSNumber" type="xs:string"/>
+	<xs:element name="TransportMeans" type="TransportMeans_type"/>
+	<xs:element name="TransportNationality" type="xs:string"/>
+	<xs:complexType name="TransportMeans_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="TransportMeansType" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="LocalVoyageNumber" type="xs:string"/>
+	<xs:element name="LocationCountryCode" type="xs:string"/>
+	<xs:complexType name="FlashpointTemperature_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="UOM" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>
